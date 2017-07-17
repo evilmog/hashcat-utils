@@ -17,16 +17,12 @@ h_input1 = h_hash2[0:16]
 h_input2 = h_hash2[16:32]
 
 if platform.system() == 'Windows':
-        print 'This is Windows'
+        print "echo '" + h_input1 + ":" + h_challenge + "' > " + h_user + ".hash"
+        print "echo '" + h_input2 + ":" + h_challenge + "' >> " + h_user + ".hash"
 
 if platform.system() == 'Linux':
         dir_path = os.path.dirname(os.path.realpath(__file__))
         h_exec = dir_path + "/ct3_to_ntlm.bin"
-        print h_input1 + ":" + h_challenge
-        print h_input2 + ":" + h_challenge
-#       h_input3 = subprocess.call([h_exec, h_split, h_challenge, h_hash1])
-#       output = check_output([[h_exec, h_split, h_challenge, h_hash1])
+        print "echo '" + h_input1 + ":" + h_challenge + "' > " + h_user + ".hash"
+        print "echo '" + h_input2 + ":" + h_challenge + "' >> " + h_user + ".hash"
         p = subprocess.call([h_exec, h_split, h_challenge, h_hash1])
-
-else:
-        print 'Unable to handle OS'
